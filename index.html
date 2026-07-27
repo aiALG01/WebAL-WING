@@ -164,10 +164,15 @@
         <p class="hero-kicker">AL-WING — Websites für kleine, regionale Betriebe</p>
 
         <!-- Standbild: fängt unnatürliche KI-Augenbewegungen beim Laden ab,
-             bis der erste Scroll das Video übernehmen lässt. -->
-        <div id="hero-fallback-image" role="img" aria-label="Anna Lena Gerth blickt in die Kamera, ein aufgeklappter Laptop in der Hand" style="background-image: url('assets/Lena-69.jpg');"></div>
+             bis der erste Scroll das Video übernehmen lässt. Bild selbst
+             kommt aus css/style.css (Desktop: Lena-69, Mobile: Lena-20 —
+             main.js setzt das passende aria-label). -->
+        <div id="hero-fallback-image" role="img" aria-label="Anna Lena Gerth blickt in die Kamera, ein aufgeklappter Laptop in der Hand"></div>
 
-        <video id="hero-video" muted playsinline preload="auto" aria-hidden="true">
+        <!-- preload="none": Auf Mobile (kein Video-Scrubbing, siehe main.js
+             Abschnitt 4) wird das Video nie per play()/pause() "aufgewärmt"
+             und damit auch nie geladen — spart Datenvolumen. -->
+        <video id="hero-video" muted playsinline preload="none" aria-hidden="true">
           <source src="assets/hero-cinematic.mp4" type="video/mp4">
         </video>
 
@@ -192,6 +197,19 @@
         </div>
 
         <p class="hero-cue" aria-hidden="true">Scrollen</p>
+      </div>
+
+      <!-- Mobile: kein Video/Zoom (siehe main.js, Abschnitt 4) — dieser Text
+           blendet stattdessen ganz regulär per Scroll-Reveal auf beigem
+           Grund ein, sobald er in den Viewport scrollt. Sichtbar für
+           Screenreader (kein aria-hidden), anders als das Desktop-Pendant
+           im Laptop-Bildschirm. -->
+      <div class="hero-mobile-followup" data-reveal>
+        <p class="trigger-headline">Sie leisten gute Arbeit.<br>Zeigen Sie sie.</p>
+        <p class="trigger-text">
+          Ich erstelle Websites für kleine, regionale Betriebe. Persönlich betreut, mit Hosting und
+          DSGVO-konform.
+        </p>
       </div>
     </section>
 

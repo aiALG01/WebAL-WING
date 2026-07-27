@@ -727,10 +727,17 @@ body.nav-open {
   position: absolute;
   z-index: 1;
   inset: 0;
+  background-image: url("../assets/Lena-69.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   will-change: opacity;
+}
+
+/* Mobil: eigenes, ruhigeres Foto statt des Video-Standbilds — passend zum
+   statischen Hero ohne Scroll-Video (siehe main.js, Abschnitt 4). */
+.hero-mobile-static #hero-fallback-image {
+  background-image: url("../assets/Lena-20.jpg");
 }
 
 /* Über die gesamte Bühne fixiert, Video zoomt ab Scroll-Hälfte per JS heran */
@@ -885,15 +892,35 @@ h1.hero-intro-copy-line {
   100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
-/* Statischer Hero-Fallback (reduced motion / kein JS): nur Standbild und
-   Einstiegstext, kein Scroll-Effekt, kein Bildschirm-Reveal */
+/* Statischer Hero-Fallback (reduced motion / kein JS / Mobile): nur
+   Standbild und Einstiegstext, kein Scroll-Effekt, kein Bildschirm-Reveal.
+   .hero-mobile-static wird von main.js unterhalb von 768px gesetzt — dort
+   gibt es ohnehin kein Video-Scrubbing, das Standbild ist die eigentliche
+   Bühne, kein Fallback. */
 .no-js .hero,
-.reduced-motion .hero {
+.reduced-motion .hero,
+.hero-mobile-static .hero {
   height: auto;
 }
 
+/* Lena-20 hat einen hellen Hintergrund — ohne abdunkelnden Scrim wäre die
+   helle Cream-Schrift darüber kaum lesbar. Nur auf Mobile nötig: die
+   Video-Standbilder sind dunkel genug, dass .hero-silk (mix-blend: screen)
+   dort schon ausreicht. Als ::after auf #hero-fallback-image selbst statt
+   auf dem Container, damit der Scrim in dessen eigenem Stacking-Context
+   (z-index: 1) bleibt — und nicht über den Text (z-index: 2 im Fallback,
+   siehe unten) gerät. */
+.hero-mobile-static #hero-fallback-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--color-navy) 72%, transparent);
+  pointer-events: none;
+}
+
 .no-js #hero-scroll-container,
-.reduced-motion #hero-scroll-container {
+.reduced-motion #hero-scroll-container,
+.hero-mobile-static #hero-scroll-container {
   position: relative;
   height: auto;
   min-height: 100vh;
@@ -907,8 +934,10 @@ h1.hero-intro-copy-line {
 
 .no-js .hero-kicker,
 .reduced-motion .hero-kicker,
+.hero-mobile-static .hero-kicker,
 .no-js .hero-cue,
-.reduced-motion .hero-cue {
+.reduced-motion .hero-cue,
+.hero-mobile-static .hero-cue {
   position: static;
   transform: none;
   opacity: 1;
@@ -916,8 +945,10 @@ h1.hero-intro-copy-line {
 
 .no-js .hero-intro-copy,
 .reduced-motion .hero-intro-copy,
+.hero-mobile-static .hero-intro-copy,
 .no-js .hero-intro-sub,
-.reduced-motion .hero-intro-sub {
+.reduced-motion .hero-intro-sub,
+.hero-mobile-static .hero-intro-sub {
   position: static;
   opacity: 1;
   transform: none;
@@ -927,7 +958,8 @@ h1.hero-intro-copy-line {
 }
 
 .no-js #hero-fallback-image,
-.reduced-motion #hero-fallback-image {
+.reduced-motion #hero-fallback-image,
+.hero-mobile-static #hero-fallback-image {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -935,14 +967,55 @@ h1.hero-intro-copy-line {
 
 .no-js #hero-video,
 .reduced-motion #hero-video,
+.hero-mobile-static #hero-video,
 .no-js .laptop-screen-overlay,
-.reduced-motion .laptop-screen-overlay {
+.reduced-motion .laptop-screen-overlay,
+.hero-mobile-static .laptop-screen-overlay {
   display: none;
 }
 
 .no-js .hero-cue::after,
-.reduced-motion .hero-cue::after {
+.reduced-motion .hero-cue::after,
+.hero-mobile-static .hero-cue::after {
   animation: none;
+}
+
+/* Text auf beigem Grund, der auf Mobile nach dem statischen Hero-Bild
+   folgt — inhaltlich identisch zum Desktop-Reveal im Laptop-Bildschirm,
+   hier aber regulärer Fließtext-Block statt Video-Overlay, sichtbar für
+   Screenreader (kein aria-hidden) und über die normale [data-reveal]-
+   Mechanik eingeblendet, sobald er in den Viewport scrollt. */
+.hero-mobile-followup {
+  display: none;
+}
+
+.hero-mobile-static .hero-mobile-followup {
+  display: block;
+  background: var(--color-cream);
+  padding: var(--space-section) var(--gutter);
+  text-align: center;
+}
+
+.hero-mobile-followup .trigger-headline,
+.hero-mobile-followup .trigger-text {
+  opacity: 1;
+  transform: none;
+}
+
+.hero-mobile-followup .trigger-headline {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-h1);
+  line-height: 1.05;
+  color: var(--color-navy);
+  margin-bottom: 1rem;
+}
+
+.hero-mobile-followup .trigger-text {
+  font-size: var(--text-lead);
+  color: color-mix(in srgb, var(--color-navy) 82%, var(--color-cream));
+  max-width: 32rem;
+  margin-inline: auto;
 }
 
 /* --------------------------------------------------------------------------

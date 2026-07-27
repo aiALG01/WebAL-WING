@@ -22,6 +22,24 @@
     document.documentElement.classList.add("reduced-motion");
   }
 
+  /* Auf Mobile kein Video-Scrubbing: Standbild (Lena-20) bleibt die Bühne,
+     kein Zoom in den Laptop-Bildschirm. Einmalig beim Laden geprüft, wie
+     auch prefers-reduced-motion oben — kein Live-Umschalten bei Resize,
+     entspricht der bestehenden Konvention dieser Datei. */
+  var isMobileHeroStatic = window.matchMedia("(max-width: 767px)").matches;
+
+  if (isMobileHeroStatic) {
+    document.documentElement.classList.add("hero-mobile-static");
+
+    var heroFallbackImg = document.getElementById("hero-fallback-image");
+    if (heroFallbackImg) {
+      heroFallbackImg.setAttribute(
+        "aria-label",
+        "Porträt von Anna Lena Gerth, Gründerin von AL-WING"
+      );
+    }
+  }
+
   var supportsScrollTimeline =
     typeof CSS !== "undefined" &&
     CSS.supports &&
@@ -123,12 +141,16 @@
         Kein Fade am Ende: die Bühne entpinnt sich nach Fortschritt 1 ganz
         normal und wird von der nächsten Sektion weggescrollt wie jeder
         andere Seitenabschnitt auch — kein künstliches Verschwinden.
+        Läuft nicht unterhalb von 768px (siehe isMobileHeroStatic oben):
+        Mobile bekommt stattdessen den statischen Hero-Fallback aus
+        css/style.css plus .hero-mobile-followup weiter unten im Markup.
      ------------------------------------------------------------------------ */
   var heroContainer = document.getElementById("hero-scroll-container");
 
   if (
     heroContainer &&
     !prefersReducedMotion &&
+    !isMobileHeroStatic &&
     typeof gsap !== "undefined" &&
     typeof ScrollTrigger !== "undefined"
   ) {
