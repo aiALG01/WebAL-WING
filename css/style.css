@@ -35,6 +35,27 @@
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+/* Melodrama & Britney (Indian Type Foundry / Fontshare) — jetzt ebenfalls
+   selbst gehostet statt über api.fontshare.com geladen, letzter externer
+   Font-CDN-Kontakt entfällt damit vollständig. Beide sind Variable Fonts;
+   eine Datei pro Familie deckt alle im Design-System genutzten Schnitte
+   (500/600 bei Melodrama, 400 bei Britney) über die font-weight-Spanne ab. */
+@font-face {
+  font-family: "Melodrama";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("../assets/fonts/melodrama-variable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Britney";
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url("../assets/fonts/britney-variable.woff2") format("woff2");
+}
+
 /* --------------------------------------------------------------------------
    1. Design-Tokens
    -------------------------------------------------------------------------- */
