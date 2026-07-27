@@ -134,7 +134,7 @@
     </section>
 
     <!-- Ehrlicher Status + CTA -->
-    <section class="section section--flush section--flush-bottom" aria-labelledby="status-heading">
+    <section class="section section--flush section--flush-bottom section--divide" aria-labelledby="status-heading">
       <div class="container">
         <div class="section-head" data-reveal>
           <span class="eyebrow">Aktueller Stand</span>
@@ -158,13 +158,19 @@
           <a class="btn btn--primary" href="kontakt.html">Eines der ersten Projekte werden <span class="btn-arrow" aria-hidden="true">→</span></a>
           <p class="empty-state-note">Kundenstimmen folgen, sobald es sie gibt — vielleicht ist Ihre die erste.</p>
         </div>
+      </div>
+    </section>
 
-        <!-- Beispielhafte Projektarten — bewusst als Kategorien formuliert,
-             nicht als abgeschlossene Fallstudien, um keine falschen
-             Referenzen vorzutäuschen. -->
-        <div class="section-head" data-reveal style="margin-top: var(--space-section); --reveal-delay: 0.1s">
+    <!-- Beispielhafte Projektarten — bewusst als Kategorien formuliert,
+         nicht als abgeschlossene Fallstudien, um keine falschen
+         Referenzen vorzutäuschen. Eigener warmer Hintergrund, damit sich
+         diese Beispiel-Kategorien sichtbar vom ehrlichen Status-Text oben
+         abheben. -->
+    <section class="section section--warm" aria-labelledby="categories-heading">
+      <div class="container">
+        <div class="section-head" data-reveal style="--reveal-delay: 0.1s">
           <span class="eyebrow">Was möglich ist</span>
-          <h2>Diese Art von Projekten nehme ich an.</h2>
+          <h2 id="categories-heading">Diese Art von Projekten nehme ich an.</h2>
         </div>
         <div class="project-grid">
           <article class="project-card" data-reveal>
