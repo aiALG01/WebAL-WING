@@ -1807,8 +1807,11 @@ h1.hero-intro-copy-line {
   gap: var(--space-inner);
 }
 
+/* Aspect-ratio statt min-height/Stretch: das Turnierfoto (1600×1066)
+   bekommt exakt seine eigene Boxform, damit object-fit:cover nichts mehr
+   beschneidet — das ganze Bild bleibt sichtbar statt nur ein Ausschnitt. */
 .sport-proof > .media {
-  min-height: 22rem;
+  aspect-ratio: 1600 / 1066;
 }
 
 .sport-proof-side {
@@ -1825,10 +1828,9 @@ h1.hero-intro-copy-line {
 @media (min-width: 768px) {
   .sport-proof {
     grid-template-columns: 2fr 1fr;
-  }
-
-  .sport-proof > .media {
-    min-height: 100%;
+    /* Verhindert, dass das Grid die Bildspalte auf die (ggf. höhere)
+       Textspalte streckt — das würde die aspect-ratio wieder aufheben. */
+    align-items: start;
   }
 }
 
