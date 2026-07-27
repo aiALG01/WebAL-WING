@@ -1089,6 +1089,22 @@ h1.hero-intro-copy-line {
   color: var(--color-cream);
 }
 
+/* Steel-Blue-Sektion — für dunkle Blöcke MITTEN auf der Seite statt Navy:
+   Navy bleibt so ausschließlich Hero-Anfang und Footer-Ende vorbehalten,
+   ein mittiger Navy-Block würde sonst wie ein (falsches) Seitenende
+   wirken. Kombiniert mit .on-dark, das Text-/Eyebrow-Farben liefert —
+   diese Klasse überschreibt nur den Hintergrund (higher specificity dank
+   zweier Klassen, unabhängig von der Regel-Reihenfolge). Gleiche
+   Verlaufsrichtung/-stufen wie .media--steel, damit der Ton konsistent
+   zum bereits bestehenden Steel-Blue-Motiv bleibt. */
+.on-dark.section--steel {
+  background: linear-gradient(
+    155deg,
+    var(--color-steel-blue),
+    color-mix(in srgb, var(--color-steel-blue) 70%, var(--color-navy))
+  );
+}
+
 .badge-strip {
   display: grid;
   gap: 1px;
