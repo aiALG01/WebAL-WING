@@ -1,6 +1,6 @@
-# Alewing
+# AL-WING
 
-> Alewing baut Websites für kleine, regionale Betriebe ohne eigene Website —
+> AL-WING baut Websites für kleine, regionale Betriebe ohne eigene Website —
 > persönlich betreut von der Gründerin Anna Lena Gerth, mit Website-Erstellung,
 > Betreuung und Automatisierung wiederkehrender Abläufe aus einer Hand. Solo-Studio
 > mit Sitz in Gera, Thüringen (Deutschland). Der Name spielt auf Pegasus an: Flügel
@@ -19,11 +19,11 @@ haben.
 - [Webseiten-Betreuung](https://www.studio-gerth.de/leistungen.html#betreuung): Hosting, Updates, Inhaltsänderungen und technische Wartung aus einer Hand. Richtwert: 50–200 € pro Monat, abhängig von Hosting, Wartung und Änderungsaufwand.
 - [Automatisierung wiederkehrender Abläufe](https://www.studio-gerth.de/leistungen.html#automatisierung): Formular- und E-Mail-Workflows, Termin- und Anfragenmanagement, inklusive Auftragsverarbeitungsvertrag. Individuelle Kalkulation.
 
-## Über Alewing
+## Über AL-WING
 
 - [Über mich](https://www.studio-gerth.de/ueber-mich.html): Markenstory und Werdegang der Gründerin Anna Lena Gerth.
 - [Projekte & Referenzen](https://www.studio-gerth.de/projekte.html): aktueller Projektstand, ehrlich ohne erfundene Referenzen.
-- [Kontakt](https://www.studio-gerth.de/kontakt.html): Kontaktformular, E-Mail lena.gerth@outlook.de, Telefon +49 1520 2758286, Naulitz 9a, 07554 Gera.
+- [Kontakt](https://www.studio-gerth.de/kontakt.html): Kontaktformular, E-Mail anlegerth@gmail.com, Telefon +49 1520 2758286, Naulitz 9a, 07554 Gera.
 
 ## Rechtliches
 

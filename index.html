@@ -6,7 +6,6 @@
   <title>AL-WING — Websites für kleine, regionale Betriebe</title>
   <meta name="description" content="AL-WING baut Websites für kleine, regionale Betriebe ohne eigene Website — persönlich betreut, mit Hosting und DSGVO-Datenschutz aus einer Hand.">
 
-  <!-- Display-Fonts: Melodrama & Britney (Indian Type Foundry, kostenfrei via Fontshare) -->
   <!-- SEO / GEO: Canonical, Open Graph & Twitter Card -->
   <link rel="canonical" href="https://www.studio-gerth.de/">
   <meta property="og:type" content="website">
@@ -47,7 +46,7 @@
         "addressRegion": "Thüringen",
         "addressCountry": "DE"
       },
-      "email": "lena.gerth@outlook.de",
+      "email": "anlegerth@gmail.com",
       "telephone": "+49-1520-2758286",
       "areaServed": {
         "@type": "Country",
@@ -85,13 +84,7 @@
   ]
 }
   </script>
-
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-  <link href="https://api.fontshare.com/v2/css?f[]=melodrama@400,500,600&amp;f[]=britney@400,700&amp;display=swap" rel="stylesheet">
-  <!-- Body-Font: Inter (Google Fonts) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <!-- Alle Schriften (Inter, Melodrama, Britney) sind lokal eingebunden ueber css/style.css - kein externer Font-CDN mehr. -->
 
   <!-- Favicon: Monogramm "A." als Inline-SVG (keine Bilddatei nötig) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23072768'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' fill='%23F4EAE1' text-anchor='middle'%3EA.%3C/text%3E%3C/svg%3E">
@@ -99,9 +92,10 @@
   <link rel="stylesheet" href="css/style.css">
 
   <!-- GSAP + ScrollTrigger: treiben das Video-Scrubbing der Hero-Sektion
-       (siehe js/main.js, Abschnitt 4) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+       (siehe js/main.js, Abschnitt 4). Selbst gehostet statt über cdnjs,
+       damit keine Drittanbieter-Anfrage (mit IP-Übertragung) mehr nötig ist. -->
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
@@ -139,7 +133,7 @@
     </ul>
     <p class="overlay-meta">
       AL-WING · Gera<br>
-      <a href="mailto:lena.gerth@outlook.de">lena.gerth@outlook.de</a>
+      <a href="mailto:anlegerth@gmail.com">anlegerth@gmail.com</a>
     </p>
   </nav>
 
@@ -448,7 +442,7 @@
         <div class="footer-col">
           <h3>Kontakt &amp; Rechtliches</h3>
           <ul>
-            <li><a href="mailto:lena.gerth@outlook.de">lena.gerth@outlook.de</a></li>
+            <li><a href="mailto:anlegerth@gmail.com">anlegerth@gmail.com</a></li>
             <li><a href="impressum.html">Impressum</a></li>
             <li><a href="datenschutz.html">Datenschutz</a></li>
           </ul>
