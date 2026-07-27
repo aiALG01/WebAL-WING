@@ -1089,19 +1089,21 @@ h1.hero-intro-copy-line {
   color: var(--color-cream);
 }
 
-/* Steel-Blue-Sektion — für dunkle Blöcke MITTEN auf der Seite statt Navy:
+/* Helle Steel-Blue-Sektion — für Blöcke MITTEN auf der Seite statt Navy:
    Navy bleibt so ausschließlich Hero-Anfang und Footer-Ende vorbehalten,
    ein mittiger Navy-Block würde sonst wie ein (falsches) Seitenende
-   wirken. Kombiniert mit .on-dark, das Text-/Eyebrow-Farben liefert —
-   diese Klasse überschreibt nur den Hintergrund (higher specificity dank
-   zweier Klassen, unabhängig von der Regel-Reihenfolge). Gleiche
-   Verlaufsrichtung/-stufen wie .media--steel, damit der Ton konsistent
-   zum bereits bestehenden Steel-Blue-Motiv bleibt. */
-.on-dark.section--steel {
+   wirken. Bewusst hell (Steel-Blue in Cream verdünnt) statt dunkel, damit
+   die braune Akzentfarbe (Eyebrow, Ziffern) hier lesbar bleibt — helle
+   Cream-Schrift funktioniert auf diesem Hintergrund nicht mehr, darum
+   NICHT mit .on-dark kombinieren. Navy übernimmt stattdessen Überschriften
+   und Fließtext (siehe .process-step/.value-item weiter unten), genau wie
+   auf den anderen hellen Sektionen der Seite. */
+.section--steel {
+  color: var(--color-navy);
   background: linear-gradient(
     155deg,
-    var(--color-steel-blue),
-    color-mix(in srgb, var(--color-steel-blue) 70%, var(--color-navy))
+    color-mix(in srgb, var(--color-steel-blue) 22%, var(--color-cream)),
+    color-mix(in srgb, var(--color-steel-blue) 34%, var(--color-cream))
   );
 }
 
@@ -1206,7 +1208,7 @@ h1.hero-intro-copy-line {
 
 .process-step {
   padding-top: 1.25rem;
-  border-top: 1px solid color-mix(in srgb, var(--color-cream) 25%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--color-navy) 18%, transparent);
 }
 
 .process-step::before {
@@ -1216,7 +1218,7 @@ h1.hero-intro-copy-line {
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--color-tan);
+  color: var(--color-brown);
   margin-bottom: 0.6rem;
 }
 
@@ -1228,7 +1230,7 @@ h1.hero-intro-copy-line {
 .process-step p {
   font-size: var(--text-small);
   line-height: 1.55;
-  color: color-mix(in srgb, var(--color-cream) 82%, var(--color-steel-blue));
+  color: color-mix(in srgb, var(--color-navy) 78%, var(--color-cream));
 }
 
 /* --------------------------------------------------------------------------
@@ -1755,7 +1757,7 @@ h1.hero-intro-copy-line {
 
 .value-item {
   padding-top: 1.4rem;
-  border-top: 1px solid color-mix(in srgb, var(--color-cream) 25%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--color-navy) 18%, transparent);
 }
 
 .value-item .value-word {
@@ -1769,7 +1771,7 @@ h1.hero-intro-copy-line {
 .value-item p {
   font-size: var(--text-small);
   line-height: 1.55;
-  color: color-mix(in srgb, var(--color-cream) 82%, var(--color-steel-blue));
+  color: color-mix(in srgb, var(--color-navy) 78%, var(--color-cream));
 }
 
 .founder-facts {
