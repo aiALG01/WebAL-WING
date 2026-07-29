@@ -284,16 +284,27 @@
   }
 
   /* ------------------------------------------------------------------------
-     6. Kontaktformular — Versand über FormSubmit.co (siehe kontakt.html,
-        form action) + Honeypot-Spamschutz. Kein eigenes Backend nötig.
+     6. Kontaktformular — klassischer Form-POST an FormSubmit.co (siehe
+        kontakt.html, form action/_next). Kein fetch/AJAX: FormSubmits
+        AJAX-Endpunkt braucht einen eigenen "/ajax/"-Pfad, den wir hier nicht
+        nutzen, um genau diese Fehlerquelle zu vermeiden — der Browser
+        übernimmt den echten Versand ganz normal selbst. Nach dem Redirect
+        über _next erkennt main.js den Erfolg am URL-Parameter ?gesendet=1
+        und zeigt die Erfolgsmeldung, auch nach einem echten Seitenwechsel.
      ------------------------------------------------------------------------ */
   var form = document.querySelector("[data-contact-form]");
+  var statusBox = document.querySelector("[data-form-status]");
+
+  if (new URLSearchParams(window.location.search).get("gesendet") === "1") {
+    if (form) form.hidden = true;
+    if (statusBox) {
+      statusBox.hidden = false;
+      statusBox.focus();
+    }
+  }
 
   if (form) {
-    var statusBox = document.querySelector("[data-form-status]");
-    var errorBox = document.querySelector("[data-form-error]");
     var honeypot = form.querySelector('[name="_honey"]');
-    var submitButton = form.querySelector('button[type="submit"]');
 
     var validators = {
       name: function (value) {
@@ -347,8 +358,6 @@
     });
 
     form.addEventListener("submit", function (event) {
-      event.preventDefault();
-
       var fields = Array.prototype.slice.call(
         form.querySelectorAll("input, select, textarea")
       );
@@ -359,45 +368,22 @@
       });
 
       if (firstInvalid) {
+        event.preventDefault();
         firstInvalid.focus();
         return;
       }
 
-      if (errorBox) errorBox.hidden = true;
-
-      /* Honeypot ausgefüllt → vermutlich ein Bot. Kein echter Versand,
-         aber dieselbe Erfolgsmeldung zeigen, damit der Bot nichts lernt. */
+      /* Honeypot ausgefüllt → vermutlich ein Bot: Versand unterbinden.
+         FormSubmit blockt Einsendungen mit ausgefülltem _honey serverseitig
+         ohnehin automatisch — das hier ist nur eine zusätzliche Hürde. */
       if (honeypot && honeypot.value) {
-        form.hidden = true;
-        if (statusBox) {
-          statusBox.hidden = false;
-          statusBox.focus();
-        }
+        event.preventDefault();
         return;
       }
 
-      if (submitButton) submitButton.disabled = true;
-
-      fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" }
-      })
-        .then(function (res) {
-          if (!res.ok) throw new Error("Versand fehlgeschlagen");
-          form.hidden = true;
-          if (statusBox) {
-            statusBox.hidden = false;
-            statusBox.focus();
-          }
-        })
-        .catch(function () {
-          if (submitButton) submitButton.disabled = false;
-          if (errorBox) {
-            errorBox.hidden = false;
-            errorBox.focus();
-          }
-        });
+      /* Alles gültig: kein preventDefault — der Browser sendet das
+         Formular ganz normal an FormSubmit und leitet danach über _next
+         zurück auf diese Seite (siehe Erfolgsmeldung oben). */
     });
   }
 

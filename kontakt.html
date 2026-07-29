@@ -155,9 +155,14 @@
         <div class="contact-grid">
 
           <!-- Formular: sendet über FormSubmit.co (kein eigenes Konto/Setup
-               nötig, kostenlos, leitet an anlegerth@gmail.com weiter) direkt
-               per POST — kein eigenes Backend nötig. Validierung zusätzlich
-               im Frontend (js/main.js, Abschnitt 6). Nach dem allerersten
+               nötig, kostenlos, leitet an anlegerth@gmail.com weiter) als
+               ganz normaler, klassischer HTML-Form-POST (kein fetch/AJAX —
+               FormSubmits AJAX-Endpunkt braucht einen eigenen "/ajax/"-Pfad
+               und war hier vermutlich die Fehlerquelle). Der Browser
+               übernimmt den Versand selbst und leitet danach über _next
+               zurück auf diese Seite; main.js erkennt das per URL-Parameter
+               und zeigt die Erfolgsmeldung. Validierung zusätzlich im
+               Frontend (js/main.js, Abschnitt 6). Nach dem allerersten
                echten Versand schickt FormSubmit einmalig eine
                Bestätigungs-Mail an anlegerth@gmail.com, die bestätigt werden
                muss — danach laufen alle weiteren Anfragen automatisch durch. -->
@@ -166,6 +171,7 @@
               <input type="hidden" name="_subject" value="Neue Anfrage über die AL-WING-Website">
               <input type="hidden" name="_template" value="table">
               <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_next" value="https://al-wing.de/kontakt.html?gesendet=1">
 
               <!-- Honeypot: für Menschen unsichtbar (Position außerhalb des
                    sichtbaren Bereichs statt display:none, damit einfache Bots
@@ -229,12 +235,6 @@
             <div class="form-status" data-form-status hidden tabindex="-1" role="status">
               <strong>Vielen Dank für Ihre Nachricht.</strong><br>
               Ich melde mich innerhalb von zwei Werktagen persönlich bei Ihnen.
-            </div>
-
-            <div class="form-status form-status--error" data-form-error hidden tabindex="-1" role="alert">
-              <strong>Das hat leider nicht geklappt.</strong><br>
-              Bitte versuchen Sie es erneut oder schreiben Sie mir direkt an
-              <a href="mailto:anlegerth@gmail.com">anlegerth@gmail.com</a>.
             </div>
           </div>
 
