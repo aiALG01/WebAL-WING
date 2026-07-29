@@ -154,12 +154,31 @@
       <div class="container">
         <div class="contact-grid">
 
-          <!-- Formular: reine Frontend-Validierung (js/main.js).
-               Für den Echtbetrieb einen Formular-Service anbinden, z. B. Formspree:
-               action="https://formspree.io/f/DEINE_FORM_ID" method="POST"
-               — Details im Kommentar in js/main.js, Abschnitt 6. -->
+          <!-- Formular: sendet über FormSubmit.co (kein eigenes Konto/Setup
+               nötig, kostenlos, leitet an anlegerth@gmail.com weiter) direkt
+               per POST — kein eigenes Backend nötig. Validierung zusätzlich
+               im Frontend (js/main.js, Abschnitt 6). Nach dem allerersten
+               echten Versand schickt FormSubmit einmalig eine
+               Bestätigungs-Mail an anlegerth@gmail.com, die bestätigt werden
+               muss — danach laufen alle weiteren Anfragen automatisch durch. -->
           <div data-reveal>
-            <form class="contact-form" data-contact-form action="#" method="post" novalidate>
+            <form class="contact-form" data-contact-form action="https://formsubmit.co/anlegerth@gmail.com" method="post" novalidate>
+              <input type="hidden" name="_subject" value="Neue Anfrage über die AL-WING-Website">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_captcha" value="false">
+
+              <!-- Honeypot: für Menschen unsichtbar (Position außerhalb des
+                   sichtbaren Bereichs statt display:none, damit einfache Bots
+                   es trotzdem "sehen" und ausfüllen), aus der Tab-Reihenfolge
+                   und für Screenreader ausgeblendet. Name/autocomplete bewusst
+                   ungewöhnlich gewählt, damit Browser-Autofill hier nichts
+                   einträgt und dadurch aus Versehen echte Nutzer:innen
+                   aussortiert. FormSubmit selbst wertet _honey ebenfalls aus. -->
+              <div class="form-honeypot" aria-hidden="true">
+                <label for="field-hp">Bitte leer lassen</label>
+                <input type="text" id="field-hp" name="_honey" tabindex="-1" autocomplete="off">
+              </div>
+
               <div class="form-field">
                 <label for="field-name">Ihr Name *</label>
                 <input type="text" id="field-name" name="name" autocomplete="name" required placeholder="Vor- und Nachname">
@@ -210,6 +229,12 @@
             <div class="form-status" data-form-status hidden tabindex="-1" role="status">
               <strong>Vielen Dank für Ihre Nachricht.</strong><br>
               Ich melde mich innerhalb von zwei Werktagen persönlich bei Ihnen.
+            </div>
+
+            <div class="form-status form-status--error" data-form-error hidden tabindex="-1" role="alert">
+              <strong>Das hat leider nicht geklappt.</strong><br>
+              Bitte versuchen Sie es erneut oder schreiben Sie mir direkt an
+              <a href="mailto:anlegerth@gmail.com">anlegerth@gmail.com</a>.
             </div>
           </div>
 

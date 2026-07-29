@@ -2048,8 +2048,25 @@ h1.hero-intro-copy-line {
   font-size: var(--text-small);
 }
 
+.form-status--error {
+  border-left-color: var(--color-brown);
+  background: color-mix(in srgb, var(--color-brown) 10%, transparent);
+}
+
 .form-status[hidden] {
   display: none;
+}
+
+/* Honeypot: unsichtbar für Menschen (aus dem Viewport geschoben statt
+   display:none/visibility:hidden — einfache Bots überspringen bekannte
+   "hidden"-Techniken oft gezielt, ein außerhalb positioniertes Feld füllen
+   sie trotzdem aus), aber technisch vorhanden, damit Bots es finden. */
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .contact-meta {

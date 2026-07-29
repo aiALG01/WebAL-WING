@@ -284,17 +284,16 @@
   }
 
   /* ------------------------------------------------------------------------
-     6. Kontaktformular — Validierung ohne Backend
-        HINWEIS ZUR ANBINDUNG: Für den Echtbetrieb einen Formular-Service
-        einbinden, z. B. Formspree:
-          1. <form action="https://formspree.io/f/DEINE_FORM_ID" method="POST">
-          2. Den fetch()-Block unten aktivieren (Kommentar) — fertig.
-        Alternativ: eigener Endpoint / Netlify Forms / Web3Forms.
+     6. Kontaktformular — Versand über FormSubmit.co (siehe kontakt.html,
+        form action) + Honeypot-Spamschutz. Kein eigenes Backend nötig.
      ------------------------------------------------------------------------ */
   var form = document.querySelector("[data-contact-form]");
 
   if (form) {
     var statusBox = document.querySelector("[data-form-status]");
+    var errorBox = document.querySelector("[data-form-error]");
+    var honeypot = form.querySelector('[name="_honey"]');
+    var submitButton = form.querySelector('button[type="submit"]');
 
     var validators = {
       name: function (value) {
@@ -364,21 +363,41 @@
         return;
       }
 
-      /* --- Ohne Backend: Erfolgsmeldung anzeigen -------------------------
-         Für den Echtbetrieb diesen Block durch den Versand ersetzen, z. B.:
+      if (errorBox) errorBox.hidden = true;
 
-         fetch(form.action, {
-           method: "POST",
-           body: new FormData(form),
-           headers: { Accept: "application/json" }
-         })
-           .then(function (res) { ... Erfolg/Fehler anzeigen ... });
-      ---------------------------------------------------------------------- */
-      form.hidden = true;
-      if (statusBox) {
-        statusBox.hidden = false;
-        statusBox.focus();
+      /* Honeypot ausgefüllt → vermutlich ein Bot. Kein echter Versand,
+         aber dieselbe Erfolgsmeldung zeigen, damit der Bot nichts lernt. */
+      if (honeypot && honeypot.value) {
+        form.hidden = true;
+        if (statusBox) {
+          statusBox.hidden = false;
+          statusBox.focus();
+        }
+        return;
       }
+
+      if (submitButton) submitButton.disabled = true;
+
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" }
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error("Versand fehlgeschlagen");
+          form.hidden = true;
+          if (statusBox) {
+            statusBox.hidden = false;
+            statusBox.focus();
+          }
+        })
+        .catch(function () {
+          if (submitButton) submitButton.disabled = false;
+          if (errorBox) {
+            errorBox.hidden = false;
+            errorBox.focus();
+          }
+        });
     });
   }
 
