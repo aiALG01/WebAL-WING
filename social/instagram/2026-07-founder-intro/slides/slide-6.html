@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../base.css">
+<style>
+  body { background: var(--cream); }
+  .content {
+    position: absolute;
+    left: 96px;
+    right: 96px;
+    top: 50%;
+    transform: translateY(-58%);
+  }
+  .kicker {
+    font-family: 'Britney', serif;
+    font-size: 42px;
+    color: var(--tan);
+    margin-bottom: 28px;
+  }
+  .rule {
+    width: 64px;
+    height: 2px;
+    background: var(--tan);
+    margin-bottom: 40px;
+  }
+  .headline {
+    font-size: 68px;
+    color: var(--navy);
+    margin-bottom: 40px;
+    max-width: 840px;
+  }
+  .body-text {
+    font-size: 34px;
+    color: var(--navy);
+    opacity: 0.82;
+    max-width: 800px;
+  }
+  .palette {
+    position: absolute;
+    left: 96px;
+    bottom: 120px;
+    display: flex;
+    gap: 18px;
+  }
+  .swatch {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <div class="content">
+      <div class="rule"></div>
+      <div class="kicker">Meine Arbeitsweise</div>
+      <div class="headline">Individuell statt von der Stange.</div>
+      <div class="body-text">Jede Website entsteht pers&ouml;nlich f&uuml;r einen Betrieb, nicht aus dem Baukasten.</div>
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:var(--navy)"></div>
+      <div class="swatch" style="background:var(--steel-blue)"></div>
+      <div class="swatch" style="background:var(--cream); border:1px solid rgba(7,39,104,0.15)"></div>
+      <div class="swatch" style="background:var(--tan)"></div>
+      <div class="swatch" style="background:var(--brown)"></div>
+    </div>
+  </div>
+</body>
+</html>

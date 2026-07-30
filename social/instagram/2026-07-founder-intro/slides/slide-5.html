@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../base.css">
+<style>
+  body { background: var(--cream); }
+  .heading {
+    position: absolute;
+    left: 96px;
+    right: 96px;
+    top: 104px;
+  }
+  .kicker {
+    font-family: 'Britney', serif;
+    font-size: 40px;
+    color: var(--tan);
+    margin-bottom: 20px;
+  }
+  .headline {
+    font-size: 58px;
+    color: var(--navy);
+    max-width: 760px;
+  }
+
+  .phone {
+    position: absolute;
+    left: 50%;
+    top: 700px;
+    transform: translate(-50%, -50%);
+    width: 452px;
+  }
+  .phone-outer {
+    background: var(--navy);
+    border-radius: 58px;
+    padding: 16px;
+    box-shadow: 0 50px 90px rgba(7,39,104,0.28), 0 16px 30px rgba(7,39,104,0.14);
+    position: relative;
+  }
+  .phone-notch {
+    position: absolute;
+    top: 34px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 118px;
+    height: 24px;
+    background: var(--navy);
+    border-radius: 14px;
+    z-index: 2;
+  }
+  .phone-screen {
+    position: relative;
+    width: 420px;
+    height: 786px;
+    border-radius: 42px;
+    overflow: hidden;
+    background: var(--cream);
+  }
+  .phone-screen img {
+    width: 420px;
+    display: block;
+  }
+
+  .body-wrap {
+    position: absolute;
+    left: 96px;
+    right: 96px;
+    bottom: 100px;
+  }
+  .body-text {
+    font-size: 32px;
+    color: var(--navy);
+    opacity: 0.82;
+    max-width: 780px;
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <div class="heading">
+      <div class="kicker">Mein Angebot</div>
+      <div class="headline">Website. Betreuung. Automatisierung.</div>
+    </div>
+
+    <div class="phone">
+      <div class="phone-outer">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <img src="../images/mobile-kontakt-crop.png">
+        </div>
+      </div>
+    </div>
+
+    <div class="body-wrap">
+      <div class="body-text">Ich baue Ihre Website, pflege sie danach und nehme Ihnen wiederkehrende Aufgaben ab.</div>
+    </div>
+  </div>
+</body>
+</html>
