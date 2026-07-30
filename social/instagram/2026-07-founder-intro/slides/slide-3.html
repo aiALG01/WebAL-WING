@@ -9,7 +9,7 @@
   .bleed-img {
     position: absolute;
     top: -45px;
-    left: -1080px;
+    left: -1240px;
     width: 2160px;
     height: 1440px;
     transform: scaleX(-1);
@@ -21,26 +21,26 @@
     mix-blend-mode: screen;
     opacity: 0.6;
   }
-  .veil-bottom {
+  .veil-top {
     position: absolute;
-    left: 0; right: 0; bottom: 0;
-    height: 660px;
-    background: linear-gradient(0deg, rgba(4,12,32,0.86) 0%, rgba(4,12,32,0) 100%);
+    top: 0; left: 0; right: 0;
+    height: 620px;
+    background: linear-gradient(180deg, rgba(4,12,32,0.78) 0%, rgba(4,12,32,0) 100%);
   }
   .caption {
     position: absolute;
+    top: 96px;
     left: 72px;
     right: 72px;
-    bottom: 96px;
     color: var(--cream);
   }
   .caption .headline { font-size: 58px; margin-bottom: 22px; }
   .caption .headline .accent {
     font-family: 'Britney', serif;
-    color: var(--tan);
+    color: var(--steel-blue);
     font-weight: 500;
   }
-  .caption .body-text { font-size: 30px; color: var(--cream); opacity: 0.92; max-width: 880px; }
+  .caption .body-text { font-size: 30px; color: var(--cream); opacity: 0.92; max-width: 780px; }
 </style>
 </head>
 <body>
@@ -49,10 +49,10 @@
       <img class="bleed-img" src="../images/Lena-67.jpg">
       <div class="navy-tint"></div>
     </div>
-    <div class="veil-bottom"></div>
+    <div class="veil-top"></div>
     <div class="caption">
       <div class="headline"><span class="accent">Gr&uuml;nderin</span> von AL&#8209;WING.</div>
-      <div class="body-text">Master in Wirtschaftsinformatik &ndash; meine Leidenschaft ist es, Design, Technologie und moderne Webl&ouml;sungen zu verbinden.</div>
+      <div class="body-text">Meine Leidenschaft ist es, Design, Technologie und moderne Webl&ouml;sungen zu verbinden.</div>
     </div>
   </div>
 </body>

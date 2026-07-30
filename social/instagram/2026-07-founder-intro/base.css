@@ -51,6 +51,19 @@ html, body {
   font-weight: 500;
 }
 
+.site-kicker {
+  font-family: 'Inter', sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brown);
+}
+
+.on-dark .site-kicker {
+  color: color-mix(in srgb, var(--cream) 75%, var(--steel-blue));
+}
+
 .script {
   font-family: 'Britney', serif;
   font-style: normal;
