@@ -1968,6 +1968,14 @@ h1.hero-intro-copy-line {
   gap: 1.4rem;
 }
 
+/* Ohne diese Regel gewinnt display:grid oben gegen die UA-Regel für
+   [hidden] (Autoren-Styles schlagen User-Agent-Styles unabhängig von der
+   Spezifität) — form.hidden = true im JS hätte sonst keine sichtbare
+   Wirkung, obwohl die Erfolgsmeldung darunter längst eingeblendet ist. */
+.contact-form[hidden] {
+  display: none;
+}
+
 .form-field {
   display: grid;
   gap: 0.5rem;
@@ -2046,11 +2054,6 @@ h1.hero-intro-copy-line {
   border-left: 2px solid var(--color-steel-blue);
   background: color-mix(in srgb, var(--color-steel-blue) 10%, transparent);
   font-size: var(--text-small);
-}
-
-.form-status--error {
-  border-left-color: var(--color-brown);
-  background: color-mix(in srgb, var(--color-brown) 10%, transparent);
 }
 
 .form-status[hidden] {
