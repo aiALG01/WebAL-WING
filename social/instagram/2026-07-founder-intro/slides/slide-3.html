@@ -4,20 +4,28 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../base.css">
 <style>
-  body { background: #000; }
-  .bleed-window { position: absolute; inset: 0; overflow: hidden; }
+  body { background: var(--navy); }
+  .bleed-window { position: absolute; inset: 0; overflow: hidden; background: #050b1a; }
   .bleed-img {
     position: absolute;
     top: -45px;
     left: -1080px;
     width: 2160px;
     height: 1440px;
+    transform: scaleX(-1);
+  }
+  .navy-tint {
+    position: absolute;
+    inset: 0;
+    background: var(--navy);
+    mix-blend-mode: screen;
+    opacity: 0.6;
   }
   .veil-bottom {
     position: absolute;
     left: 0; right: 0; bottom: 0;
-    height: 640px;
-    background: linear-gradient(0deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0) 100%);
+    height: 660px;
+    background: linear-gradient(0deg, rgba(4,12,32,0.86) 0%, rgba(4,12,32,0) 100%);
   }
   .caption {
     position: absolute;
@@ -27,6 +35,11 @@
     color: var(--cream);
   }
   .caption .headline { font-size: 58px; margin-bottom: 22px; }
+  .caption .headline .accent {
+    font-family: 'Britney', serif;
+    color: var(--tan);
+    font-weight: 500;
+  }
   .caption .body-text { font-size: 30px; color: var(--cream); opacity: 0.92; max-width: 880px; }
 </style>
 </head>
@@ -34,10 +47,11 @@
   <div class="frame">
     <div class="bleed-window">
       <img class="bleed-img" src="../images/Lena-67.jpg">
+      <div class="navy-tint"></div>
     </div>
     <div class="veil-bottom"></div>
     <div class="caption">
-      <div class="headline">Gr&uuml;nderin von AL&#8209;WING.</div>
+      <div class="headline"><span class="accent">Gr&uuml;nderin</span> von AL&#8209;WING.</div>
       <div class="body-text">Master in Wirtschaftsinformatik &ndash; meine Leidenschaft ist es, Design, Technologie und moderne Webl&ouml;sungen zu verbinden.</div>
     </div>
   </div>

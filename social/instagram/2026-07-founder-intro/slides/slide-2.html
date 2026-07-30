@@ -4,20 +4,28 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../base.css">
 <style>
-  body { background: #000; }
-  .bleed-window { position: absolute; inset: 0; overflow: hidden; }
+  body { background: var(--navy); }
+  .bleed-window { position: absolute; inset: 0; overflow: hidden; background: #050b1a; }
   .bleed-img {
     position: absolute;
     top: -45px;
     left: 0;
     width: 2160px;
     height: 1440px;
+    transform: scaleX(-1);
+  }
+  .navy-tint {
+    position: absolute;
+    inset: 0;
+    background: var(--navy);
+    mix-blend-mode: screen;
+    opacity: 0.6;
   }
   .veil-top {
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 520px;
-    background: linear-gradient(180deg, rgba(7,39,104,0.55) 0%, rgba(7,39,104,0) 100%);
+    height: 560px;
+    background: linear-gradient(180deg, rgba(4,12,32,0.7) 0%, rgba(4,12,32,0) 100%);
   }
   .caption {
     position: absolute;
@@ -33,6 +41,7 @@
   <div class="frame">
     <div class="bleed-window">
       <img class="bleed-img" src="../images/Lena-67.jpg">
+      <div class="navy-tint"></div>
     </div>
     <div class="veil-top"></div>
     <div class="caption">
