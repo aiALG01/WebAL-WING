@@ -144,7 +144,7 @@
         </h1>
         <p class="lead" data-reveal style="--reveal-delay: 0.16s">
           Schreiben Sie mir, worum es geht. Sie erhalten innerhalb von
-          zwei Werktagen eine persönliche Antwort von mir — keine Automatik.
+          zwei Werktagen eine persönliche Antwort von mir.
         </p>
       </div>
     </section>
@@ -153,44 +153,39 @@
     <section class="section section--flush section--flush-bottom section--divide" aria-label="Kontaktformular und Kontaktdaten">
       <div class="container">
         <div class="contact-grid">
-
-          <!-- Formular: kein Drittanbieter-Backend mehr (FormSubmit.co ließ
-               sich von hier aus nicht zuverlässig testen/verifizieren und
-               hat bei zwei Versuchen offenbar nicht zugestellt). Stattdessen
-               öffnet main.js beim Absenden einen mailto:-Link an
-               anlegerth@gmail.com mit vorausgefüllten Angaben — das hängt an
-               keinem externen Dienst, keiner API und keinem Konto, sondern
-               nutzt ausschließlich das E-Mail-Programm der besuchenden
-               Person. Einzige Voraussetzung: Die Person braucht ein
-               eingerichtetes Mail-Programm (Desktop) bzw. muss im Browser
-               einen Mail-Anbieter auswählen (mobil) — dafür kann hier nichts
-               am Server/Drittanbieter mehr fehlschlagen. -->
           <div data-reveal>
-            <form class="contact-form" data-contact-form novalidate>
-              <!-- Honeypot: für Menschen unsichtbar (Position außerhalb des
-                   sichtbaren Bereichs statt display:none, damit einfache Bots
-                   es trotzdem "sehen" und ausfüllen), aus der Tab-Reihenfolge
-                   und für Screenreader ausgeblendet. Name/autocomplete bewusst
-                   ungewöhnlich gewählt, damit Browser-Autofill hier nichts
-                   einträgt und dadurch aus Versehen echte Nutzer:innen
-                   aussortiert. -->
-              <div class="form-honeypot" aria-hidden="true">
+            
+            <!-- Ein einziges Form-Tag mit allen Attributen -->
+            <form 
+              class="contact-form" 
+              name="kontakt" 
+              method="POST" 
+              data-netlify="true" 
+              data-netlify-honeypot="_honey"
+              data-contact-form 
+              novalidate
+            >
+              <!-- Netlify benötigt oft ein verstecktes form-name Feld, wenn per JS/Build verarbeitet wird -->
+              <input type="hidden" name="form-name" value="kontakt" />
+    
+              <!-- Honeypot Feld (versteckt via inline style ODER CSS) -->
+              <div class="form-honeypot" style="display: none;" aria-hidden="true">
                 <label for="field-hp">Bitte leer lassen</label>
                 <input type="text" id="field-hp" name="_honey" tabindex="-1" autocomplete="off">
               </div>
-
+    
               <div class="form-field">
                 <label for="field-name">Ihr Name *</label>
                 <input type="text" id="field-name" name="name" autocomplete="name" required placeholder="Vor- und Nachname">
                 <p class="field-error" aria-live="polite"></p>
               </div>
-
+    
               <div class="form-field">
                 <label for="field-email">Ihre E-Mail-Adresse *</label>
                 <input type="email" id="field-email" name="email" autocomplete="email" required placeholder="name@unternehmen.de">
                 <p class="field-error" aria-live="polite"></p>
               </div>
-
+    
               <div class="form-field">
                 <label for="field-topic">Worum geht es?</label>
                 <select id="field-topic" name="topic">
@@ -202,13 +197,13 @@
                 </select>
                 <p class="field-error" aria-live="polite"></p>
               </div>
-
+    
               <div class="form-field">
                 <label for="field-message">Ihre Nachricht *</label>
                 <textarea id="field-message" name="message" required placeholder="Erzählen Sie kurz, wo Sie stehen und was Sie vorhaben."></textarea>
                 <p class="field-error" aria-live="polite"></p>
               </div>
-
+    
               <div>
                 <label class="form-consent">
                   <input type="checkbox" name="consent" required>
@@ -220,7 +215,7 @@
                 </label>
                 <p class="field-error" aria-live="polite"></p>
               </div>
-
+    
               <div>
                 <button type="submit" class="btn btn--primary">Nachricht senden <span class="btn-arrow" aria-hidden="true">→</span></button>
               </div>
