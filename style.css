@@ -2070,6 +2070,7 @@ h1.hero-intro-copy-line {
   width: 1px;
   height: 1px;
   overflow: hidden;
+  display: none !important;
 }
 
 .contact-meta {
