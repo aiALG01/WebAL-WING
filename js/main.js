@@ -284,24 +284,15 @@
   }
 
   /* ------------------------------------------------------------------------
-     6. Kontaktformular — klassischer Form-POST an FormSubmit.co (siehe
-        kontakt.html, form action/_next). Kein fetch/AJAX: FormSubmits
-        AJAX-Endpunkt braucht einen eigenen "/ajax/"-Pfad, den wir hier nicht
-        nutzen, um genau diese Fehlerquelle zu vermeiden — der Browser
-        übernimmt den echten Versand ganz normal selbst. Nach dem Redirect
-        über _next erkennt main.js den Erfolg am URL-Parameter ?gesendet=1
-        und zeigt die Erfolgsmeldung, auch nach einem echten Seitenwechsel.
+     6. Kontaktformular — mailto:-Versand statt Drittanbieter-Backend.
+        Kein externer Dienst, keine API, kein Konto: main.js öffnet beim
+        Absenden das E-Mail-Programm der besuchenden Person mit einer
+        vorausgefüllten Nachricht an anlegerth@gmail.com. Der eigentliche
+        Versand passiert dort — wir zeigen direkt danach einen Hinweis, statt
+        (unbelegt) einen automatischen Erfolg vorzutäuschen.
      ------------------------------------------------------------------------ */
   var form = document.querySelector("[data-contact-form]");
   var statusBox = document.querySelector("[data-form-status]");
-
-  if (new URLSearchParams(window.location.search).get("gesendet") === "1") {
-    if (form) form.hidden = true;
-    if (statusBox) {
-      statusBox.hidden = false;
-      statusBox.focus();
-    }
-  }
 
   if (form) {
     var honeypot = form.querySelector('[name="_honey"]');
@@ -358,6 +349,8 @@
     });
 
     form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
       var fields = Array.prototype.slice.call(
         form.querySelectorAll("input, select, textarea")
       );
@@ -368,22 +361,46 @@
       });
 
       if (firstInvalid) {
-        event.preventDefault();
         firstInvalid.focus();
         return;
       }
 
-      /* Honeypot ausgefüllt → vermutlich ein Bot: Versand unterbinden.
-         FormSubmit blockt Einsendungen mit ausgefülltem _honey serverseitig
-         ohnehin automatisch — das hier ist nur eine zusätzliche Hürde. */
+      /* Honeypot ausgefüllt → vermutlich ein Bot: kein E-Mail-Programm
+         öffnen, Formular einfach ignorieren. */
       if (honeypot && honeypot.value) {
-        event.preventDefault();
         return;
       }
 
-      /* Alles gültig: kein preventDefault — der Browser sendet das
-         Formular ganz normal an FormSubmit und leitet danach über _next
-         zurück auf diese Seite (siehe Erfolgsmeldung oben). */
+      var topicLabels = {
+        "neue-website": "Neue Website",
+        hosting: "Hosting",
+        datenschutz: "Datenschutz / DSGVO",
+        wartung: "Wartung & Aktualisierung",
+        sonstiges: "Etwas anderes"
+      };
+      var name = form.querySelector('[name="name"]').value.trim();
+      var email = form.querySelector('[name="email"]').value.trim();
+      var topicValue = form.querySelector('[name="topic"]').value;
+      var message = form.querySelector('[name="message"]').value.trim();
+
+      var subject = "Kontaktanfrage über AL-WING: " + (topicLabels[topicValue] || "Website-Anfrage");
+      var body =
+        "Name: " + name + "\n" +
+        "E-Mail: " + email + "\n" +
+        "Thema: " + (topicLabels[topicValue] || "-") + "\n\n" +
+        message;
+
+      var mailtoUrl =
+        "mailto:anlegerth@gmail.com" +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
+
+      window.location.href = mailtoUrl;
+
+      if (statusBox) {
+        statusBox.hidden = false;
+        statusBox.focus();
+      }
     });
   }
 
