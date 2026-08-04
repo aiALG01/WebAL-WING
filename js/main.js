@@ -283,14 +283,6 @@
     renderFallbacks();
   }
 
-  /* ------------------------------------------------------------------------
-     6. Kontaktformular — mailto:-Versand statt Drittanbieter-Backend.
-        Kein externer Dienst, keine API, kein Konto: main.js öffnet beim
-        Absenden das E-Mail-Programm der besuchenden Person mit einer
-        vorausgefüllten Nachricht an anlegerth@gmail.com. Der eigentliche
-        Versand passiert dort — wir zeigen direkt danach einen Hinweis, statt
-        (unbelegt) einen automatischen Erfolg vorzutäuschen.
-     ------------------------------------------------------------------------ */
   var form = document.querySelector("[data-contact-form]");
   var statusBox = document.querySelector("[data-form-status]");
 
@@ -365,42 +357,47 @@
         return;
       }
 
-      /* Honeypot ausgefüllt → vermutlich ein Bot: kein E-Mail-Programm
-         öffnen, Formular einfach ignorieren. */
+      // Honeypot ausgefüllt → Abbrechen
       if (honeypot && honeypot.value) {
         return;
       }
 
-      var topicLabels = {
-        "neue-website": "Neue Website",
-        hosting: "Hosting",
-        datenschutz: "Datenschutz / DSGVO",
-        wartung: "Wartung & Aktualisierung",
-        sonstiges: "Etwas anderes"
-      };
-      var name = form.querySelector('[name="name"]').value.trim();
-      var email = form.querySelector('[name="email"]').value.trim();
-      var topicValue = form.querySelector('[name="topic"]').value;
-      var message = form.querySelector('[name="message"]').value.trim();
+      var submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
 
-      var subject = "Kontaktanfrage über AL-WING: " + (topicLabels[topicValue] || "Website-Anfrage");
-      var body =
-        "Name: " + name + "\n" +
-        "E-Mail: " + email + "\n" +
-        "Thema: " + (topicLabels[topicValue] || "-") + "\n\n" +
-        message;
+      // Netlify Form Submit via Fetch
+      var formData = new FormData(form);
 
-      var mailtoUrl =
-        "mailto:anlegerth@gmail.com" +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
-
-      window.location.href = mailtoUrl;
-
-      if (statusBox) {
-        statusBox.hidden = false;
-        statusBox.focus();
+      // Falls der Formularname noch nicht im FormData steckt, zur Sicherheit anhängen:
+      if (!formData.has("form-name")) {
+        formData.append("form-name", "kontakt");
       }
+
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(function (response) {
+        if (response.ok) {
+          form.reset();
+          if (statusBox) {
+            statusBox.hidden = false;
+            statusBox.focus();
+          } else {
+            alert("Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.");
+          }
+        } else {
+          alert("Fehler beim Senden. Bitte versuchen Sie es später erneut.");
+        }
+      })
+      .catch(function (error) {
+        console.error("Netzwerkfehler:", error);
+        alert("Verbindungsfehler. Bitte versuchen Sie es später erneut.");
+      })
+      .finally(function () {
+        if (submitBtn) submitBtn.disabled = false;
+      });
     });
   }
 
