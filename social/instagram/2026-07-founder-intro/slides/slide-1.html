@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../base.css">
+<style>
+  body { background: var(--navy); }
+  .photo {
+    position: absolute;
+    inset: 0;
+    width: 1080px;
+    height: 1350px;
+    object-fit: cover;
+    object-position: 50% 18%;
+  }
+  .veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(7,39,104,0) 0%,
+      rgba(7,39,104,0) 42%,
+      rgba(7,39,104,0.55) 66%,
+      rgba(7,39,104,0.92) 100%);
+  }
+  .eyebrow {
+    position: absolute;
+    top: 72px;
+    left: 72px;
+    color: var(--navy);
+    opacity: 0.75;
+  }
+  .hook {
+    position: absolute;
+    left: 72px;
+    right: 72px;
+    bottom: 96px;
+    color: var(--cream);
+  }
+  .hook .line { font-size: 84px; display: block; }
+  .hook .line.accent {
+    font-family: 'Britney', serif;
+    color: var(--tan);
+    font-size: 92px;
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <img class="photo" src="../images/portrait-founder.jpg">
+    <div class="veil"></div>
+    <div class="eyebrow">AL&#8209;WING.</div>
+    <div class="hook headline">
+      <span class="line">Ihre Konkurrenz</span>
+      <span class="line">ist online.</span>
+      <span class="line accent">Sie noch nicht?</span>
+    </div>
+  </div>
+</body>
+</html>

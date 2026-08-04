@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../base.css">
+<style>
+  body { background: var(--cream); }
+  .heading {
+    position: absolute;
+    left: 96px;
+    right: 96px;
+    top: 100px;
+  }
+  .site-kicker {
+    margin-bottom: 20px;
+  }
+  .headline {
+    font-size: 58px;
+    color: var(--navy);
+    max-width: 800px;
+    margin-bottom: 32px;
+  }
+  .headline .accent {
+    font-family: 'Britney', serif;
+    color: var(--tan);
+    font-weight: 500;
+  }
+  .body-text {
+    font-size: 32px;
+    color: var(--navy);
+    opacity: 0.82;
+    max-width: 760px;
+  }
+
+  .phone {
+    position: absolute;
+    left: 50%;
+    top: 660px;
+    transform: translateX(-50%);
+    width: 560px;
+  }
+  .phone-outer {
+    position: relative;
+    background: linear-gradient(155deg, #2b2f38 0%, #101216 38%, #06070a 100%);
+    border-radius: 64px;
+    padding: 14px;
+    box-shadow:
+      0 70px 110px rgba(7,39,104,0.32),
+      0 24px 44px rgba(7,39,104,0.2),
+      inset 0 0 0 1px rgba(255,255,255,0.06);
+  }
+  .phone-outer::before {
+    content: "";
+    position: absolute;
+    left: 6px; top: 40px; bottom: 40px;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0));
+    border-radius: 2px;
+  }
+  .side-btn {
+    position: absolute;
+    background: linear-gradient(90deg, #3a3d44, #17181b);
+    border-radius: 3px;
+  }
+  .side-btn.mute   { left: -4px; top: 168px; width: 4px; height: 46px; }
+  .side-btn.vol-up { left: -4px; top: 238px; width: 4px; height: 70px; }
+  .side-btn.vol-dn { left: -4px; top: 320px; width: 4px; height: 70px; }
+  .side-btn.power  { right: -4px; top: 250px; width: 4px; height: 100px; }
+
+  .phone-screen {
+    position: relative;
+    width: 532px;
+    height: 996px;
+    border-radius: 50px;
+    overflow: hidden;
+    background: var(--cream);
+  }
+  .phone-screen img {
+    width: 532px;
+    display: block;
+  }
+  .dynamic-island {
+    position: absolute;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 132px;
+    height: 36px;
+    background: #04050a;
+    border-radius: 20px;
+    z-index: 3;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+  }
+  .glass-reflection {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    background: linear-gradient(122deg,
+      rgba(255,255,255,0.16) 0%,
+      rgba(255,255,255,0.05) 18%,
+      rgba(255,255,255,0) 34%,
+      rgba(255,255,255,0) 100%);
+  }
+  .screen-edge {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    border-radius: 50px;
+    box-shadow: inset 0 0 0 2px rgba(0,0,0,0.5);
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <div class="heading">
+      <div class="site-kicker">Mein Angebot</div>
+      <div class="headline">Website. Betreuung. <span class="accent">Automatisierung.</span></div>
+      <div class="body-text">Ich baue Ihre Website, pflege sie danach und nehme Ihnen wiederkehrende Aufgaben ab.</div>
+    </div>
+
+    <div class="phone">
+      <div class="phone-outer">
+        <div class="side-btn mute"></div>
+        <div class="side-btn vol-up"></div>
+        <div class="side-btn vol-dn"></div>
+        <div class="side-btn power"></div>
+        <div class="phone-screen">
+          <img src="../images/mobile-kontakt-crop.png">
+          <div class="dynamic-island"></div>
+          <div class="glass-reflection"></div>
+          <div class="screen-edge"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
