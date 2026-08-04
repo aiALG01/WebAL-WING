@@ -453,7 +453,12 @@ p {
   padding: 0;
 }
 
-.nav-list a {
+/* :not(.nav-cta) — der Pill-Button ist kein Textlink mit Unterstreich-Hover,
+   sondern ein eigenes Button-Element mit Flächen-Hover; ohne den Ausschluss
+   erbte er sowohl das Unterstreichen-Pseudoelement (das rechteckig über den
+   abgerundeten Rand hinausragt) als auch das schmalere padding-bottom des
+   Textlinks, wodurch er unten sichtbar schmaler ausfiel als oben. */
+.nav-list a:not(.nav-cta) {
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: var(--tracking-wide);
@@ -463,7 +468,7 @@ p {
   padding-bottom: 0.3rem;
 }
 
-.nav-list a::after {
+.nav-list a:not(.nav-cta)::after {
   content: "";
   position: absolute;
   left: 0;
@@ -476,8 +481,8 @@ p {
   transition: transform 0.35s var(--ease-out);
 }
 
-.nav-list a:hover::after,
-.nav-list a[aria-current="page"]::after {
+.nav-list a:not(.nav-cta):hover::after,
+.nav-list a:not(.nav-cta)[aria-current="page"]::after {
   transform: scaleX(1);
 }
 
