@@ -72,17 +72,17 @@ Unternehmen ohne (gute) eigene Website**. Entsprechend wurde die Copy
 - [x] **`llms.txt`** ergänzt — strukturierte Kurzfassung für KI-Antwortmaschinen
   (GEO), analog zu `robots.txt` für klassische Crawler.
 - [x] **Firmenname** — von „Studio Gerth" auf „Alewing" umbenannt (Logo,
-  Nav, Footer, Meta-Tags, JSON-LD, `robots.txt`, `llms.txt`). Domain bleibt
-  bewusst `studio-gerth.de`, bis die neue Domain feststeht (siehe Punkt
-  darunter).
-- [ ] **Domain** — Platzhalter `https://www.studio-gerth.de` in Canonicals, Open-Graph-Tags, JSON-LD, `robots.txt`, `sitemap.xml` und `llms.txt` durch die echte Domain ersetzen (Suchen/Ersetzen über alle Dateien).
+  Nav, Footer, Meta-Tags, JSON-LD, `robots.txt`, `llms.txt`).
+- [x] **Domain** — Platzhalter `https://www.studio-gerth.de` durch die echte
+  Domain `https://www.al-wing.de` ersetzt (Canonicals, Open-Graph-Tags,
+  JSON-LD, `robots.txt`, `sitemap.xml`, `llms.txt`).
 - [ ] **Impressum & Kontaktdaten** — reale Daten aus dem Lebenslauf übernommen (Anna Lena Gerth, Naulitz 9a, 07554 Gera, lena.gerth@outlook.de, +49 1520 2758286). Bitte bestätigen; USt-Hinweis ergänzen.
 - [ ] **Rechtstexte** — Impressum/Datenschutz sind sorgfältig erstellt, ersetzen aber keine Rechtsberatung.
 - [ ] **Fonts lokal einbinden** — aktuell via Fontshare/Google-CDN; für sauberen Datenschutz lokal laden (Dateien nach `assets/fonts/` legen, `@font-face` in `css/style.css` ergänzen, CDN-`<link>`-Tags entfernen).
 - [ ] **Formular anbinden** — z. B. Formspree; Anleitung im Kommentar in `js/main.js`, Abschnitt 6.
 - [ ] **Weitere Fotografien** — die Platzhalterflächen für „Hosting" und „Datenschutz" auf `leistungen.html` sind bewusst noch CSS-Texturen geblieben, da keine passende Foto-Art-Direction (Architektur/Papier-Motiv) vorliegt — echte Fotos hier nur einsetzen, wenn sie thematisch passen, sonst wirkt es wie Stock-Material.
 - [ ] **Projekte & Testimonials** — `projekte.html` zeigt bewusst noch keine erfundenen Referenzen (rechtlich riskant, siehe UWG). Sobald reale Projekte/Zitate vorliegen, den in der Datei dokumentierten Muster-Code für `.project-card` und `.testimonial-placeholder` nutzen — Kundenstimmen nur mit ausdrücklicher Einwilligung veröffentlichen.
-- [ ] **Social Links** — der LinkedIn-Platzhalter im Footer wurde entfernt (verlinkte nur auf die LinkedIn-Startseite, kein echtes Profil — wirkte wie ein toter Link). Sobald ein echtes Profil existiert: Link im Footer alle `.html`-Dateien ergänzen und in den JSON-LD-`sameAs`-Daten eintragen.
+- [x] **Social Links** — der LinkedIn-Platzhalter im Footer wurde entfernt (verlinkte nur auf die LinkedIn-Startseite, kein echtes Profil — wirkte wie ein toter Link). Instagram-Profil [@alwing.digital](https://www.instagram.com/alwing.digital/) ist jetzt im Footer aller `.html`-Dateien sowie in den JSON-LD-`sameAs`-Daten verlinkt.
 - [ ] **Google Search Console / Bing Webmaster Tools** — Sitemap nach Domain-Umzug neu einreichen.
 
 ## Geplant, aber noch nicht umgesetzt
