@@ -97,9 +97,9 @@ Sätze. Verlässlichkeit und Handwerk statt lauter Werbesprache.
    war nicht belegt, Rückfrage war technisch nicht möglich) — inzwischen auf
    „Alewing" umbenannt (Anspielung auf Pegasus/Flügel: Pferde-Bezug und das
    Bild, Kundschaft „nach oben zu tragen").
-2. **Domain:** Platzhalter `https://www.studio-gerth.de` für Canonicals,
-   Open-Graph-URLs, JSON-LD-`@id`/`url`, `robots.txt` und `sitemap.xml` —
-   vor Launch durch die echte Domain ersetzen.
+2. **Domain:** `https://www.al-wing.de` — inzwischen final, für Canonicals,
+   Open-Graph-URLs, JSON-LD-`@id`/`url`, `robots.txt` und `sitemap.xml`
+   eingetragen.
 3. **Impressum/Kontakt:** reale Daten aus dem Lebenslauf der Founderin —
    vor Veröffentlichung prüfen (siehe Kommentare in den Rechtsseiten).
 4. **Bilder:** CSS-Texturen als Platzhalter; erwartete Fotografien sind in

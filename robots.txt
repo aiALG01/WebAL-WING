@@ -1,8 +1,6 @@
 # AL-WING — robots.txt
-# HINWEIS: Domain ist ein Platzhalter (www.studio-gerth.de).
-# Vor Launch durch die echte Domain ersetzen.
 
 User-agent: *
 Allow: /
 
-Sitemap: https://www.studio-gerth.de/sitemap.xml
+Sitemap: https://www.al-wing.de/sitemap.xml
