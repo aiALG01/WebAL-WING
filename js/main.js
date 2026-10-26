@@ -189,10 +189,17 @@
         heroVideo.pause();
       }
     };
+    /* preload="none" im Markup verhindert das Laden auf Mobile (siehe
+       Kommentar dort), heißt hier aber: ohne expliziten load()-Aufruf
+       startet der Browser gar keinen Download, "loadedmetadata" feuert
+       nie, und warmUpVideoDecoder läuft nie an — das Video bleibt
+       unsichtbar. In diesem Zweig ist bereits klar, dass gescrubbt wird
+       (Desktop, kein reduced-motion), also hier aktiv laden. */
     if (heroVideo.readyState >= 1) {
       warmUpVideoDecoder();
     } else {
       heroVideo.addEventListener("loadedmetadata", warmUpVideoDecoder, { once: true });
+      heroVideo.load();
     }
 
     var heroTimeline = gsap.timeline({
