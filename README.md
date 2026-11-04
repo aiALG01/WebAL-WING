@@ -18,14 +18,14 @@ python3 -m http.server 8000
 ```
 index.html          Startseite mit Scroll-Hero (Navy → Cream)
 leistungen.html     Website-Erstellung · Hosting · Datenschutz · Wartung · FAQ
-projekte.html       Projekte & Referenzen (ehrlicher Status, kein Fake-Trust)
+projekte.html       Referenzen: TSV 1861 Pölzig (Vorher/Nachher-Slider), Galoppal
 ueber-mich.html     Markenstory, Haltung, Founder-Vorstellung, Solo-Hinweis
 kontakt.html        Formular (JS-Validierung, Formspree-vorbereitet)
 impressum.html      Anbieterkennzeichnung (§ 5 DDG)
 datenschutz.html    Datenschutzerklärung (DSGVO)
 css/style.css       Design-System (Farben, Typo, Layout, Animationen)
 js/main.js          Scroll-Choreografie, Reveals, Menü, Formular
-assets/             Erwartete Bilder & Fonts — siehe assets/README.md
+assets/             Bilder & Fonts; Referenz-Screenshots in assets/referenzen/
 robots.txt          Crawler-Steuerung, verweist auf sitemap.xml
 sitemap.xml         XML-Sitemap der fünf indexierbaren Seiten
 BRIEFING.md         Design-Briefing als Markdown

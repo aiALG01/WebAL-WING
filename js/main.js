@@ -409,6 +409,108 @@
   }
 
   /* ------------------------------------------------------------------------
+     6b. Referenzen: Vorher/Nachher-Vergleich (projekte.html)
+     Griff per Maus, Touch oder Tastatur verschieben; Desktop/Mobil
+     umschalten. Beim ersten Sichtkontakt eine kurze Demo-Bewegung, damit
+     klar ist, dass der Balken verschiebbar ist (nicht bei reduced-motion).
+     ------------------------------------------------------------------------ */
+  document.querySelectorAll("[data-compare]").forEach(function (root) {
+    var ba = root.querySelector(".ba");
+    var handle = root.querySelector(".ba-handle");
+    var scroller = root.querySelector(".ba-scroll");
+    var imgs = root.querySelectorAll("img[data-desktop]");
+    var urlEl = root.querySelector("[data-url]");
+    var labelL = root.querySelector(".ba-label--l");
+    var labelR = root.querySelector(".ba-label--r");
+    var urlBefore = root.dataset.urlBefore || "";
+    var urlAfter = root.dataset.urlAfter || "";
+    var pos = 50;
+    if (!ba || !handle || !scroller) return;
+
+    function set(p) {
+      pos = Math.max(0, Math.min(100, p));
+      ba.style.setProperty("--pos", pos + "%");
+      handle.setAttribute("aria-valuenow", String(Math.round(pos)));
+      handle.setAttribute("aria-valuetext", Math.round(pos) + " Prozent alte Seite");
+      if (labelL) labelL.style.opacity = pos < 12 ? "0" : "1";
+      if (labelR) labelR.style.opacity = pos > 88 ? "0" : "1";
+      if (urlEl && urlBefore) urlEl.textContent = pos >= 50 ? urlBefore : urlAfter;
+    }
+
+    function fromX(x) {
+      var r = ba.getBoundingClientRect();
+      set(((x - r.left) / r.width) * 100);
+    }
+
+    handle.addEventListener("pointerdown", function (e) {
+      handle.setPointerCapture(e.pointerId);
+      handle.classList.add("is-dragging");
+      fromX(e.clientX);
+      e.preventDefault();
+    });
+    handle.addEventListener("pointermove", function (e) {
+      if (handle.hasPointerCapture(e.pointerId)) fromX(e.clientX);
+    });
+    ["pointerup", "pointercancel"].forEach(function (t) {
+      handle.addEventListener(t, function () {
+        handle.classList.remove("is-dragging");
+      });
+    });
+
+    handle.addEventListener("keydown", function (e) {
+      var step = e.shiftKey ? 10 : 2;
+      if (e.key === "ArrowLeft" || e.key === "ArrowDown") set(pos - step);
+      else if (e.key === "ArrowRight" || e.key === "ArrowUp") set(pos + step);
+      else if (e.key === "Home") set(0);
+      else if (e.key === "End") set(100);
+      else return;
+      e.preventDefault();
+    });
+
+    /* Mausrad über dem Griff weiterhin ans Fenster geben */
+    handle.addEventListener("wheel", function (e) {
+      scroller.scrollTop += e.deltaY;
+      e.preventDefault();
+    }, { passive: false });
+
+    var buttons = root.querySelectorAll("[data-view]");
+    function view(v) {
+      buttons.forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.dataset.view === v));
+      });
+      ba.classList.toggle("is-mobil", v === "mobil");
+      imgs.forEach(function (img) {
+        if (img.dataset[v]) img.src = img.dataset[v];
+      });
+      scroller.scrollTop = 0;
+    }
+    buttons.forEach(function (b) {
+      b.addEventListener("click", function () { view(b.dataset.view); });
+    });
+
+    if (!prefersReducedMotion && "IntersectionObserver" in window) {
+      var demoDone = false;
+      new IntersectionObserver(function (entries, observer) {
+        if (!entries[0].isIntersecting || demoDone) return;
+        demoDone = true;
+        observer.disconnect();
+        var t0 = null;
+        function step(t) {
+          if (!t0) t0 = t;
+          var k = (t - t0) / 1400;
+          if (k >= 1) { set(50); return; }
+          set(50 + Math.sin(k * Math.PI * 2) * 14);
+          requestAnimationFrame(step);
+        }
+        setTimeout(function () { requestAnimationFrame(step); }, 500);
+      }, { threshold: 0.5 }).observe(ba);
+    }
+
+    if (window.matchMedia("(max-width: 640px)").matches) view("mobil");
+    set(50);
+  });
+
+  /* ------------------------------------------------------------------------
      7. Laufendes Jahr im Footer
      ------------------------------------------------------------------------ */
   var yearEl = document.querySelector("[data-year]");
